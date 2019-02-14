@@ -5,7 +5,7 @@ require "capistrano/scm/static/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "capistrano-scm-static"
-  spec.version       = Capistrano::Scm::Static::VERSION
+  spec.version       = Capistrano::SCM::Static::VERSION
   spec.authors       = ["sushant12"]
   spec.email         = ["sussyoung9@gmail.com"]
   spec.summary       = %q{A plugin for capistrano scm to deploy static site}
