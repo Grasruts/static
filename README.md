@@ -1,11 +1,13 @@
-# Static
+# capistrano scm static
 
-Static is a plugin for capistrano scm to deploy static sites.
+It is a plugin for capistrano scm to deploy static sites.
 
 
 # Installation
 
-`gem static`
+Add this to your gem file
+
+`gem 'capistrano-scm-static', '~> 0.0.2', require: false`
 
 ## deploy.rb
 
