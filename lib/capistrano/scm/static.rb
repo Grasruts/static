@@ -27,7 +27,7 @@ module Capistrano
       end
 
       def load_contents_from_dir
-        Dir.entries(fetch(:dist)).select {|f| !File.directory? f}
+        Dir.entries(fetch(:dist)).reject {|f| [".", ".."].include? f}
       end
     end
   end
