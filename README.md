@@ -1,7 +1,6 @@
 # capistrano scm static
 
-It is a plugin for capistrano scm to deploy static sites.
-
+It is a plugin for capistrano scm to deploy static sites. Support compression of dist. and uncompress to reduce deploy time.
 
 # Installation
 
