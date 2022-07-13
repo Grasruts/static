@@ -7,16 +7,17 @@ module Capistrano
        def set_defaults
        end
 
+       # Define create_release task to zip, upload, uncompress and cleanup for distribution
        def define_tasks
          this_plugin = self
          namespace :static do
            task :create_release do
-             files = this_plugin.load_contents_from_dir
+             this_plugin.compress_build
              on release_roles :all do
                execute :mkdir, "-p", release_path
-               files.each do |file|
-                 upload! "#{fetch(:dist)}/#{file}", release_path, recursive: true
-               end
+               upload! "#{fetch(:dist)}.tar.gz", release_path
+               execute :tar, 'xvf',  "#{release_path}/#{fetch(:dist)}.tar.gz", '-C', release_path, '--strip-components=1'
+               execute :rm, '-rf', "#{fetch(:dist)}.tar.gz"
              end
            end
          end
@@ -26,8 +27,8 @@ module Capistrano
         after "deploy:new_release_path", "static:create_release"
       end
 
-      def load_contents_from_dir
-        Dir.entries(fetch(:dist)).reject {|f| [".", ".."].include? f}
+      def compress_build
+        system("tar zvcf #{fetch(:dist)}.tar.gz #{fetch(:dist)}/")
       end
     end
   end
